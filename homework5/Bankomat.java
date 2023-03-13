@@ -19,26 +19,15 @@ class Bankomat {
                 System.out.println("wrong type");
         }
     }
-    boolean get(int s){
-        //  if (s%10!=0) System.out.println("% 10"); return false;
-        //  if (s<20) System.out.println("< 20"); return false;
-        int a,b,c;
-        c= Math.min(s/100, numOf100);
-        s=s-c*100;
-        b= Math.min(s/50, numOf50);
-        s=s-b*50;
-        a= Math.min(s/20, numOf20);
-        s=s-a*20;
-        if (s==0) {
-            System.out.println(c+" 100-k, "+b+" 50-k, "+a+" 20-k. ");
-         //   add( 100,-c); add( 50,-b); add( 20,-a);
-            return true;
-        }
-        else {
-            return false;
-        }
-
-
-
+    boolean get(int s) {
+        for (int i = Math.min(s / 100, numOf100); i >= 0; i--)
+            for (int j = Math.min(s / 50, numOf100); j >= 0; j--)
+                for (int k = Math.min(s / 20, numOf100); k >= 0; k--)
+                    if (i * 100 + j * 50 + k * 20 == s) {
+                        System.out.println(i + " 100-k, " + j + " 50-k, " + k + " 20-k. ");
+                        //   add( 100,-i); add( 50,-j); add( 20,-k);
+                        return true;
+                    }
+        return false;
     }
 }
